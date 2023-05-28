@@ -1,0 +1,159 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins&family=Volkhov&display=swap');
+
+body {
+    margin: 0 auto;
+    font-family: 'Poppins', sans-serif !important;
+    background: linear-gradient(to right, rgb(230, 93, 14), orange);
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.calc-container{
+    width: 300px;
+    min-width: 280px;
+}
+
+.calc-top{
+    margin-top: 10px;
+    margin-bottom: 15px;
+    padding: 0 10px !important;
+}
+
+.options{
+    cursor: pointer;
+    transition: .3s linear all;
+}
+.options[active]{
+    transform: scale(0.9);
+}
+
+.mode-container{
+    bottom: -20px;
+    left: 5px;
+    z-index: -1;
+    opacity: 0;
+    transition: .3s linear all;
+}
+
+.mode-container.shown{
+    opacity: 1;
+    z-index: 1;
+}
+
+.calc-screen{
+    background: linear-gradient(to right, #364751, #485e6b);
+    padding-bottom: 20px !important;
+}
+.light .calc-screen{
+    background: white;
+}
+.user-input-field{
+    width: 100%;
+    background: none;
+    color: white;
+    text-align: right;
+    outline: none;
+    border: none;
+}
+.result, .user-input-field{
+    letter-spacing: 3px;
+}
+.result, .user-input{
+    height: 80px;
+    color: white;
+    text-align: right;
+}
+.light .result, .light .user-input-field, .light .calc-top{
+    color: #18212a;
+}
+
+.user-input{
+    height: auto;
+    padding-top: 30px;
+}
+
+.result-area{
+    margin-top: 10px;
+}
+
+.bottom-line{
+    width: 50px;
+    height: 4px;
+    background-color: #728188;
+    left: 50%;
+    bottom: 10px;
+    transform: translate(-50%);
+}
+
+.buttons-container{
+    background-color: #18212a;
+    padding-bottom: 30px !important;
+}
+
+.light .buttons-container{
+    background-color: white;
+}
+.buttons-container>div{
+    gap: 20px 20px;
+}
+
+.buttons-container button{
+    width: 40px;
+    height: 40px;
+    border: none;
+    outline: none;
+    background: none;
+    color: white;
+}
+
+.light .buttons-container button{
+    color: #18212a;
+}
+.special-btn{
+    background-color: #e5e5e5 !important;
+    color: #18212a !important;
+}
+.light .special-btn{
+    background-color: #e4e4e4;
+    color: #18212a;
+}
+
+.equal{
+    background-color: #fd6530 !important;
+    color: white !important;
+}
+
+.arrow-icon{
+    height: 16px;
+    width: 18px;
+    background-color: white;
+    clip-path: polygon(40% 0%, 60% 0%, 20% 50%, 60% 100%, 40% 100%, 0 50%, 40% 0);
+    z-index: 111;
+}
+
+.light .arrow-icon{
+    background-color: #18212a;
+}
+
+.arrow-icon:nth-child(2){
+    left: 12px;
+    transform: rotate(312deg) translateY(4px);
+    bottom: 10px;
+}
+.arrow-icon:first-child{
+    right: -7px;
+    transform: rotate(125deg) translateY(10px);
+    top: 12px;
+}
+
+.calc-screen{
+    border-radius: 20px 20px 0 0;
+}
+
+.buttons-container{
+    border-radius: 0 0 20px 20px;
+}
+
+
