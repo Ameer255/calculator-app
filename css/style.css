@@ -11,7 +11,7 @@ body {
 }
 
 .calc-container{
-    width: 300px;
+    width: 320px;
     min-width: 280px;
 }
 
@@ -44,6 +44,7 @@ body {
 
 .calc-screen{
     background: linear-gradient(to right, #364751, #485e6b);
+    border-radius: 20px 20px 0 0;
     padding-bottom: 20px !important;
 }
 .light .calc-screen{
@@ -89,19 +90,20 @@ body {
 
 .buttons-container{
     background-color: #18212a;
-    padding-bottom: 30px !important;
+    padding: 20px 14px 20px 5px;
+    border-radius: 0 0 20px 20px;
 }
 
 .light .buttons-container{
     background-color: white;
 }
 .buttons-container>div{
-    gap: 20px 20px;
+    gap: 15px;
 }
 
 .buttons-container button{
-    width: 40px;
-    height: 40px;
+    width: 46px;
+    height: 46px;
     border: none;
     outline: none;
     background: none;
@@ -147,13 +149,3 @@ body {
     transform: rotate(125deg) translateY(10px);
     top: 12px;
 }
-
-.calc-screen{
-    border-radius: 20px 20px 0 0;
-}
-
-.buttons-container{
-    border-radius: 0 0 20px 20px;
-}
-
-
