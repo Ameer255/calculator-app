@@ -38,7 +38,6 @@ valueButtons.forEach((el) => {
 backSpaceBtn.addEventListener('click', () => {
 
     expression = removeLastChar(expression);
-    console.log('New expression is ', expression);
     userInput.value = removeLastChar(userInput.value);
 })
 
@@ -59,11 +58,13 @@ resetBtn.addEventListener('click', () => {
 
 
 //evaluate the expression when user clicks equal button
-equalBtn.addEventListener('click', calculate)
+equalBtn.addEventListener('click', calculate);
 
-let operators = '+, -, /, *, %';
+let operators = '+ - / * %';
 
-function calculate() {
+function calculate(){
+
+    //Previous implementation with eval() function
     // try {
     //     let result = eval(expression);
     //     if (result == 'Infinity' || result == '-Infinity') {
@@ -80,6 +81,9 @@ function calculate() {
     //     resultArea.innerHTML = 'Syntax error.!';
     // }
 
+
+    //current implementation with custom logic
+    // if validate function checks the expression & returns true and it also has operators then pass it to the performCalculation Function
     if (validate(expression) && expression.match(/[%/*+-]/g)) {
         expression = performCalculation(expression) + '';
         resultArea.innerHTML = expression;
@@ -89,19 +93,28 @@ function calculate() {
         resultArea.innerHTML = expression;
         userInput.value = expression;
     }
+
+    // if validate function returns false, then expression is not valid
     else {
         resultArea.innerHTML = 'invalid expression'
     }
-
 
 }
 
 
 const performCalculation = (exp) => {
 
+    if(exp[0] === '+' || exp[0] === '-'){
+        exp = exp.split('');
+        exp.unshift('0');
+        exp = exp.join('');
+    }
+
     let numbers = exp.split(/[-+*/%]/);
     let operations = exp.match(/[-+*/%]/g);
-    console.log(operations);
+
+    console.log('Numbers are ', numbers);
+    console.log('operations are ', operations);
 
     // Perform multiplication and division operations first
     let index = 0;
@@ -117,9 +130,6 @@ const performCalculation = (exp) => {
                     result = leftOperand * rightOperand;
                     break;
                 case '/':
-                    if (rightOperand === 0) {
-                        throw new Error('Division by zero');
-                    }
                     result = leftOperand / rightOperand;
                     break;
             }
@@ -133,6 +143,7 @@ const performCalculation = (exp) => {
 
     // Perform addition and subtraction operations next
     let answer = parseFloat(numbers[0]);
+
     for (let i = 0; i < operations.length; i++) {
         let operand = parseFloat(numbers[i + 1]);
         let operator = operations[i];
@@ -157,28 +168,36 @@ const performCalculation = (exp) => {
 
 
 
-
+// Function to validate the formed expression
 const validate = (str) => {
-    let operators = "+ - * / % .";
+    let operators = "+ - * / %";
+
     //check if the expression ends on an operator
     let endsCorrectly = (str.charCodeAt(str.length - 1) >= 48 && str.charCodeAt(str.length - 1) <= 57 && str[str.length - 1] !== '.');
+
     //check if the expression starts with /, *, 0r % which makes it invalid
-    let startsCorrectly = ((str[0] !== '/' && str[0] !== '*' && str[0] !== '%' && str[0] !== '+' && str[0] !== '-'));
+    let startsCorrectly = ((str[0] !== '/' && str[0] !== '*' && str[0] !== '%'));
 
     let hasConsecutiveOperators = false;
+    let hasConsecutiveDots = false;
 
     //check if expression contains division by zero
     let isDivisionByZero = str.includes('/0');
 
-    //check if the expressiion has two consecutive operators like ++ or ** 
+
     for (let i = 0; i < str.length; i++) {
+        //check if the expressiion has two consecutive operators like ++ or ** 
         if (operators.includes(str[i]) && operators.includes(str[i + 1])) {
             hasConsecutiveOperators = true;
         }
 
+        //check if the expressiion has two consecutive dots
+        if(str[i] === '.' && str[i+1] === '.'){
+            hasConsecutiveDots = true;
+        }
     }
 
-    if (startsCorrectly && endsCorrectly && !hasConsecutiveOperators && !isDivisionByZero) {
+    if (startsCorrectly && endsCorrectly && !hasConsecutiveOperators && !isDivisionByZero && !hasConsecutiveDots) {
         return true;
     }
     else {
