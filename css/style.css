@@ -11,7 +11,7 @@ body {
 }
 
 .calc-container{
-    width: 320px;
+    width: 305px;
     min-width: 280px;
 }
 
@@ -102,8 +102,8 @@ body {
 }
 
 .buttons-container button{
-    width: 46px;
-    height: 46px;
+    width: 43px;
+    height: 43px;
     border: none;
     outline: none;
     background: none;
